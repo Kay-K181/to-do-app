@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { i } from "vite/dist/node/types.d-aGj9QkWt";
 
 export default function ToDoList(){
     const [newTask, setNewTask] = useState('')
@@ -18,13 +17,21 @@ export default function ToDoList(){
     setTasks(updatedTask);
   }
 
-//   function taskUp(index){
+  function taskUp(index){
+    if (index > 0){
+        const updatedTasks = [...tasks];
+        [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
+        setTasks(updatedTasks);
+    }
+  }
 
-//   }
-
-//   function taskDown(index){
-
-//   }
+  function taskDown(index){
+    if (index < tasks.length){
+        const updatedTasks = [...tasks];
+        [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
+        setTasks(updatedTasks);
+    } 
+  }
 
     return(
         <div className="to-do-list">
