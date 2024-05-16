@@ -1,9 +1,86 @@
 *{
     margin: 0;
     box-sizing: border-box;
+    background-color: #2e2e2d;
 }
-.to-do-list{
-    font-family: Arial, sans-serif;
+.todo-wrapper{
+    font-family: 'Montserrat', sans-serif;
+    max-width: 600px;
+    width: 90%;
+    margin: 40px auto auto auto;
     text-align: center;
-    margin-top: 100px;;
+}
+
+h1{
+    font-size: 4rem;
+    color: powderblue;
+}
+
+input{
+    background-color: white;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.newTask{
+    margin-top: 15px;
+}
+
+button{
+    font-size: 1.6rem;
+    font-weight: bold;
+    background-color: #aba8a4 ;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer; 
+    transition: background-color 0.3 ease-in; 
+}
+
+.addBtn{
+    background-color: hsl(123, 72%, 44%);
+    color: rgb(243, 240, 240);
+}
+
+.addBtn:hover{
+    background-color: hsl(123, 72%, 64%);    
+}
+
+.delBtn{
+    background-color: hsl(0, 86%, 52%);
+}
+.delBtn:hover{
+    background-color: hsl(0, 86%, 72%);
+}
+
+.upDownBtn{
+    background-color: hsl(209, 92%, 48%);
+}
+.upDownBtn:hover{
+    background-color: hsl(209, 92%, 68%);
+}
+
+ol{
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.taskEdit{
+    font-size: 1.6rem;
+    color: white;
+    font-weight: bold;
+    flex: 1;
+}
+
+li{
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.delBtn, .upDownBtn{
+    margin-left: 10px;
+    color: rgb(243, 240, 240);
 }
