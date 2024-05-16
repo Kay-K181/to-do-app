@@ -1,59 +1,63 @@
 import React, { useState } from "react";
 
 export default function ToDoList(){
-    const [newTask, setNewTask] = useState('')
-    const [tasks, setTasks] = useState(['Fix door', 'New Job', 'Kill cats'])
+    const [newTask, setNewTask] = useState('');
+    const [task, setTask] = useState([]);
 
-
-  function addTask(){
-    if(newTask.trim() !== ''){
-        setTasks(prevState => [...prevState, newTask])
-        setNewTask('')
-    }   
-  }
-
-  function deleteTask(index){
-    const updatedTask = tasks.filter((element, i) => i !== index);
-    setTasks(updatedTask);
-  }
-
-  function taskUp(index){
-    if (index > 0){
-        const updatedTasks = [...tasks];
-        [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
-        setTasks(updatedTasks);
+    function add(){
+        if(newTask.trim() !== ''){
+            setTask(prevState => [...prevState, newTask])
+            setNewTask('')
+        }
     }
-  }
 
-  function taskDown(index){
-    if (index < tasks.length){
-        const updatedTasks = [...tasks];
-        [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
-        setTasks(updatedTasks);
-    } 
-  }
+    function remove(index){
+        const del = task.filter((element, i) => index !== i)
+        setTask(del)
+    }
+
+    function taskUp(index){
+        if(index > 0){
+        const changeArr = [...task];
+        [changeArr[index], changeArr[index - 1]] = [changeArr[index - 1], changeArr[index]];
+        setTask(changeArr);
+        }
+        
+    }
+
+    function taskDown(index){
+        if(index < task.length - 1){
+            const changeArr = [...task];
+        [changeArr[index], changeArr[index + 1]] = [changeArr[index + 1], changeArr[index]];
+
+        setTask(changeArr);
+        }
+        
+    }
 
     return(
-        <div className="to-do-list">
-            <h1>To-Do-List</h1>
-            <div>
+        <div className="todo-wrapper">
+            <h1>To-Do List</h1>
+            <div className="newTask">
                 <input 
                     type="text" 
                     placeholder="Enter a task..."
                     value={newTask}
                     onChange={(event) => {setNewTask(event.target.value)}}
                 />
-                <button className="add-button" onClick={addTask}>Add</button>
+                <button className="addBtn" onClick={add}>Add</button>
             </div>
             <ol>
-                {tasks.map((task, index) => 
+                {task.map((element, index) =>
                     <li key={index}>
-                        <span className="text">{task}</span>
-                        <button className="delete-button" onClick={() => deleteTask(index)}>Delete</button>
-                        <button className="up-button" onClick={() => taskUp(index)}>Up</button>
-                        <button className="down-button" onClick={() => taskDown(index)}>Down</button>                        
-                    </li>)}
+                        <span className="taskEdit">{element}</span>
+                        <button className="delBtn" onClick={() => remove(index)}>Delete</button>
+                        <button className="upDownBtn" onClick={() => taskUp(index)}>Up</button>
+                        <button className="upDownBtn" onClick={() => taskDown(index)}>Down</button>                 
+                    </li>                                              
+                )}
             </ol>
+            
         </div>
     )
 }
